@@ -1,6 +1,6 @@
 
 # Created by https://www.gitignore.io/api/f#,csharp
-
+output.*
 ### F# ###
 lib/debug
 lib/release

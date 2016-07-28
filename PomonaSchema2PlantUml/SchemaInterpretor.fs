@@ -17,11 +17,16 @@ let toPlantProperty ((name:string), (schemaProp:JsonValue))=
 
 let toPlantProperties (schemaProp:JsonValue)=
     schemaProp.Properties() |> Array.map toPlantProperty |> String.concat "\n"
-    
+
+let nameIfDifferentFromTypeName (name:string) (typename:string) = 
+    if(name.ToLower().Equals(typename.ToLower())) then "" else " : "+name
+
+let propertyName (prop:JsonValue) = (propertyType prop).Replace("[]","") 
 let toPlantRelation ((name:string), (schemaProp:JsonValue)) typename=
     typename +
-    " -- " +
-    (propertyType schemaProp).Replace("[]","")
+    " --> " +
+    (propertyName schemaProp) +
+    nameIfDifferentFromTypeName name (propertyName schemaProp) 
     
 let isDefined ((name:string), (schemaProp:JsonValue)) (allTypenames:string[])=
     Array.exists (fun x->x.Equals (propertyType schemaProp) || (x+"[]").Equals (propertyType schemaProp)) allTypenames//Ughh
@@ -31,6 +36,15 @@ let toPlantRelations (schemaProp:JsonValue) allTypenames typename=
     
 let name (t:JsonValue)=t.GetProperty("name").AsString()
 
+let toPlantAggregation typename (schemaProp:JsonValue) =
+     schemaProp.AsString() + " o-- " + typename
+
+let toPlantAggregations schemaProp typename=
+    let toAggregation= toPlantAggregation typename
+    match schemaProp with
+    | Some extendProperty -> toAggregation extendProperty
+    | _ -> ""
+
 let toPlantClass (schemaClass:JsonValue) allTypenames=
     let classname=name schemaClass
     "class " +
@@ -39,8 +53,8 @@ let toPlantClass (schemaClass:JsonValue) allTypenames=
         toPlantProperties (schemaClass.GetProperty "properties") +
         "\n}\n"+
         toPlantRelations (schemaClass.GetProperty "properties") allTypenames classname +
-        "\n\n"
-
+        "\n\n" +
+        toPlantAggregations (schemaClass.TryGetProperty "extends")  classname
 
 let data pomonaUri= 
     JsonValue.Load(schemaUri pomonaUri)
