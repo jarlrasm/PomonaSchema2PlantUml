@@ -1,5 +1,8 @@
 ﻿module SchemaInterpretor
 open FSharp.Data
+open System.Net
+open System
+open System.IO
 
 let schemaUri baseuri= baseuri+"/schemas"
 
@@ -55,9 +58,13 @@ let toPlantClass (schemaClass:JsonValue) allTypenames=
         toPlantRelations (schemaClass.GetProperty "properties") allTypenames classname +
         "\n\n" +
         toPlantAggregations (schemaClass.TryGetProperty "extends")  classname
+        
 
 let data pomonaUri= 
-    JsonValue.Load(schemaUri pomonaUri)
+    let req = WebRequest.Create(Uri(schemaUri pomonaUri)) 
+    use resp = req.GetResponse() 
+    use stream = resp.GetResponseStream() 
+    JsonValue.Load(stream)
 
 let allTypenames (types:JsonValue[])=
     Array.map name  (types)
