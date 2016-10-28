@@ -4,6 +4,8 @@ open System.Net
 open System
 open System.IO
 
+type Config = { IgnoredClasses:list<string>; Uri:string}
+
 let schemaUri baseuri= baseuri+"/schemas"
 
 let propertyType (prop:JsonValue) = 
@@ -73,10 +75,10 @@ let toPlantUml  types=
     Array.map (fun x-> toPlantClass x (allTypenames  types)) types|> String.concat "\n"
     
 let isIgnored (schemaClass:JsonValue) ignoredClasses=
-    Array.exists (fun x->x.Equals(name schemaClass)) ignoredClasses
+    List.exists (fun x->x.Equals(name schemaClass)) ignoredClasses
 
-let loadPomona pomonaUri (ignoredClasses:string[])=
+let loadPomona (configuration:Config)=
     "@startuml\n" +
-    ((data pomonaUri).GetProperty("types").AsArray() |> Array.filter (fun x->not (isIgnored x ignoredClasses)) |> toPlantUml) +
+    ((data configuration.Uri).GetProperty("types").AsArray() |> Array.filter (fun x->not (isIgnored x configuration.IgnoredClasses)) |> toPlantUml) +
     "\n@enduml\n"
 

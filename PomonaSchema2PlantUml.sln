@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PomonaSchema2PlantUml", "PomonaSchema2PlantUml\PomonaSchema2PlantUml.fsproj", "{C90F487E-95D8-41CB-BBE4-DE80861C4A9D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{190A9C77-5255-4ACA-85C8-7C261BFF25C4}"
 	ProjectSection(SolutionItems) = preProject
 		generate.sh = generate.sh
 		plantuml\plantuml.jar = plantuml\plantuml.jar
 	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PS2PlantUml", "src\PS2PlantUml\PS2PlantUml.fsproj", "{CBB07A8B-0799-4946-9E96-326DD1F8F9AC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PS2PlantUmlRunner", "src\PS2PlantUmlRunner\PS2PlantUmlRunner.fsproj", "{5D826941-4664-494B-B55A-2362DC614BE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C90F487E-95D8-41CB-BBE4-DE80861C4A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C90F487E-95D8-41CB-BBE4-DE80861C4A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C90F487E-95D8-41CB-BBE4-DE80861C4A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C90F487E-95D8-41CB-BBE4-DE80861C4A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB07A8B-0799-4946-9E96-326DD1F8F9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB07A8B-0799-4946-9E96-326DD1F8F9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB07A8B-0799-4946-9E96-326DD1F8F9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB07A8B-0799-4946-9E96-326DD1F8F9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D826941-4664-494B-B55A-2362DC614BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D826941-4664-494B-B55A-2362DC614BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D826941-4664-494B-B55A-2362DC614BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D826941-4664-494B-B55A-2362DC614BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
