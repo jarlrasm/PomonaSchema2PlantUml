@@ -53,6 +53,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
     <Compile Include="PomonaModuleExtensions.fs" />
+    <None Include="PS2PlantUml.Live.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -103,8 +104,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PS2PlantUml\PS2PlantUml.fsproj">
       <Name>PS2PlantUml</Name>
       <Project>{cbb07a8b-0799-4946-9e96-326dd1f8f9ac}</Project>

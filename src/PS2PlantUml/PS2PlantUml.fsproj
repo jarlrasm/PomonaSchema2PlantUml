@@ -53,6 +53,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="SchemaInterpretor.fs" />
     <Content Include="packages.config" />
+    <None Include="PS2PlantUml.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Data">
